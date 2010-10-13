@@ -1,6 +1,44 @@
-= simple_model_translations
+= SimpleModelTranslations
 
-Description goes here.
+Yet another implementation of ActiveRecord translations. Created for zn.ua, because globalize3 was too unconfortable to use.
+
+== Basic Usage
+
+For example, you are dealing with a website for some magazine, and you want your articles to be translated.
+So, you'll need the following models to achieve this behaviour:
+
+  class Article < ActiveRecord::Base
+    translates :name, :content
+  end
+
+  class ArticleTranslation < ActiveRecord::Base
+    translation_for :article
+  end
+
+Also, you'll need a migration:
+
+  create_table(:article_translations) do |t|
+    t.references :article
+    t.string :locale
+
+    t.string :name
+    t.text :content
+  end
+  add_index :article_translations, [:article_id, :locale], :unique => true
+
+Now you are able to translate values for the attributes :title and :description per locale:
+
+  I18n.locale = :en
+  article = Article.new(:name => 'Translations are so simple!')
+  I18n.locale = :uk
+  article.name = 'Hello, from Ukraine!'
+
+  I18n.locale = :en
+  article.name #=> 'Translations are so simple!'
+  I18n.locale = :uk
+  article.name #=> 'Hello, from Ukraine!'
+  
+Additional features can be discovered by searching the code and specs. Documentation is not available yet. I hope, it'll be done when releasing zn.ua. :)
 
 == Note on Patches/Pull Requests
  
