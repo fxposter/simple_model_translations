@@ -11,7 +11,13 @@ begin
     gem.homepage = "http://github.com/fxposter/simple_model_translations"
     gem.authors = ["Pavel Forkert"]
     gem.add_dependency "activerecord", '>= 3.0.0'
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    
+    gem.add_development_dependency 'database_cleaner'
+    gem.add_development_dependency 'ruby-debug'
+    gem.add_development_dependency 'sqlite3-ruby'
+    gem.add_development_dependency 'shoulda'
+    gem.add_development_dependency 'factory_girl'
+    gem.add_development_dependency 'rspec', '>= 2.0.0'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
