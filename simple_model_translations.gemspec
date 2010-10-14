@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_model_translations}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Forkert"]
@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Simple ActiveRecord translations for Rails 3}
   s.test_files = [
     "spec/attributes_spec.rb",
+    "spec/auto_generated_translation_classes_spec.rb",
     "spec/class_methods_spec.rb",
     "spec/data/models.rb",
     "spec/data/schema.rb",
