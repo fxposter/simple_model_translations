@@ -15,10 +15,11 @@ begin
     gem.add_development_dependency 'sqlite3-ruby', '>= 1.3.1'
     gem.add_development_dependency 'shoulda', '>= 2.11.3'
     gem.add_development_dependency 'rspec', '>= 2.0.0'
+    gem.add_development_dependency 'jeweler', '>= 1.5.0.pre5'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler --pre"
 end
 
 require 'rspec/core/rake_task'
