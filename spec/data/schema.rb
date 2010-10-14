@@ -22,5 +22,14 @@ ActiveRecord::Schema.define do
     t.string :name
     t.text :content
   end
+  
+  create_table :tags, :force => true do |t|
+  end
+
+  create_table :tag_translations, :force => true do |t|
+    t.string :locale
+    t.references :tag
+    t.string :name
+  end
 end
 

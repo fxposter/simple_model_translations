@@ -24,11 +24,6 @@ describe Article do
     I18n.locale = :de
     article.name.should == 'Hello'
   end
-  
-  it "should create translation class automatically if it doesn't exists" do
-    Tag.translation_class.should_not be_nil
-    Tag.translation_class.table_name.should == 'tag_translations'
-  end
 end
 
 describe ArticleTranslation do
