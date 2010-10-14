@@ -16,6 +16,15 @@ So, you'll need the following models to achieve this behaviour:
     translation_for :article
   end
 
+or, if you are not going to add some additional behavior to translation class (for example, validations),
+you can use translation class, created for you by default:
+
+  class Article < ActiveRecord::Base
+    translates :name, :content
+  end
+
+ArticleTranslation will be generated automagically :)
+
 Also, you'll need a migration:
 
   create_table(:article_translations) do |t|
