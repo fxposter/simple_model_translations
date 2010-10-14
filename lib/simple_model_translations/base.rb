@@ -50,7 +50,7 @@ module SimpleModelTranslations
         include SimpleModelTranslations::Attributes
         extend SimpleModelTranslations::ClassMethods
         
-        has_many :translations, :class_name => translation_class_name, :dependent => :destroy, :autosave => true
+        has_many :translations, :class_name => translation_class.name, :dependent => :destroy, :autosave => true
         
         if options[:accepts_nested_attributes]
           accepts_nested_attributes_for :translations, :allow_destroy => true
