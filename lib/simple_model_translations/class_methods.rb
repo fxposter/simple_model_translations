@@ -5,7 +5,13 @@ module SimpleModelTranslations
     end
     
     def translation_class
-      Module.const_get(translation_class_name)
+      begin
+        klass = Module.const_get(translation_class_name.to_sym)
+      rescue NameError => e
+        klass = Module.const_set(translation_class_name.to_sym, Class.new(ActiveRecord::Base))
+        klass.translation_for(self.name.underscore.to_sym)
+      end
+      klass
     end
     
     def translation_class_name

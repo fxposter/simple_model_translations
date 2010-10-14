@@ -5,7 +5,6 @@ Bundler.require(:default, :test)
 
 require 'rspec'
 require 'shoulda'
-require 'factory_girl'
 require 'active_record'
 require 'simple_model_translations'
 

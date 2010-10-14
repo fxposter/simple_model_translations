@@ -14,3 +14,7 @@ end
 class PostTranslation < ActiveRecord::Base
   translation_for :post
 end
+
+class Tag < ActiveRecord::Base
+  translates :name
+end

@@ -50,10 +50,6 @@ module SimpleModelTranslations
         include SimpleModelTranslations::Attributes
         extend SimpleModelTranslations::ClassMethods
         
-        # unless Kernel.const_get(class_name)
-        #   klass = Kernel.const_set(class_name.to_sym, Class.new(ActiveRecord::Base))
-        #   klass.translation_for(self.name.underscore.to_sym)
-        # end
         has_many :translations, :class_name => translation_class_name, :dependent => :destroy, :autosave => true
         
         if options[:accepts_nested_attributes]
