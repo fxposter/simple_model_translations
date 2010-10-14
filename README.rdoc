@@ -1,6 +1,7 @@
 = SimpleModelTranslations
 
-Yet another implementation of ActiveRecord translations. Created for zn.ua, because globalize3 was too unconfortable to use.
+Yet another implementation of ActiveRecord translations. Created for zn.ua, because globalize3 was too uncomfortable to use.
+It borrows some things from globalize3[http://github.com/svenfuchs/globalize3] and puret[http://github.com/jo/puret].
 
 == Basic Usage
 

@@ -42,15 +42,19 @@ module SimpleModelTranslations
       def configure_translations(options)
         raise 'You can call #translates method only once per model!' if included_modules.include?(SimpleModelTranslations::InstanceMethods)
         
+        (class << self; self; end).send :define_method, :translation_options do
+          options
+        end
+        
         include SimpleModelTranslations::InstanceMethods
         include SimpleModelTranslations::Attributes
+        extend SimpleModelTranslations::ClassMethods
         
-        class_name = options[:class_name] || "#{self.name}Translation"
         # unless Kernel.const_get(class_name)
         #   klass = Kernel.const_set(class_name.to_sym, Class.new(ActiveRecord::Base))
         #   klass.translation_for(self.name.underscore.to_sym)
         # end
-        has_many :translations, :class_name => class_name, :dependent => :destroy, :order => "created_at DESC", :autosave => true
+        has_many :translations, :class_name => translation_class_name, :dependent => :destroy, :autosave => true
         
         if options[:accepts_nested_attributes]
           accepts_nested_attributes_for :translations, :allow_destroy => true

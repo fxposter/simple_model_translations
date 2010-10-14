@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/simple_model_translations/class_methods.rb",
      "lib/simple_model_translations/instance_methods.rb",
      "lib/simple_model_translations/validations.rb",
+     "simple_model_translations.gemspec",
      "spec/attributes_spec.rb",
      "spec/data/models.rb",
      "spec/data/schema.rb",
