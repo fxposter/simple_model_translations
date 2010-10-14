@@ -6,14 +6,15 @@ It borrows some things from globalize3[http://github.com/svenfuchs/globalize3] a
 == Basic Usage
 
 For example, you are dealing with a website for some magazine, and you want your articles to be translated.
-So, you'll need the following models to achieve this behaviour:
-
-  class Article < ActiveRecord::Base
-    translates :name, :content
-  end
+So, you'll need the following models to achieve this behaviour
+(warning: ArticleTranslation should be defined before Article, or Rails should be able to autoload it):
 
   class ArticleTranslation < ActiveRecord::Base
     translation_for :article
+  end
+  
+  class Article < ActiveRecord::Base
+    translates :name, :content
   end
 
 or, if you are not going to add some additional behavior to translation class (for example, validations),
