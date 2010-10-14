@@ -10,13 +10,10 @@ begin
     gem.email = "fxposter@gmail.com"
     gem.homepage = "http://github.com/fxposter/simple_model_translations"
     gem.authors = ["Pavel Forkert"]
-    gem.add_dependency "activerecord", '>= 3.0.0'
     
-    gem.add_development_dependency 'database_cleaner'
-    gem.add_development_dependency 'ruby-debug'
-    gem.add_development_dependency 'sqlite3-ruby'
-    gem.add_development_dependency 'shoulda'
-    gem.add_development_dependency 'factory_girl'
+    gem.add_development_dependency 'database_cleaner', '>= 0.5.2'
+    gem.add_development_dependency 'sqlite3-ruby', '>= 1.3.1'
+    gem.add_development_dependency 'shoulda', '>= 2.11.3'
     gem.add_development_dependency 'rspec', '>= 2.0.0'
   end
   Jeweler::GemcutterTasks.new

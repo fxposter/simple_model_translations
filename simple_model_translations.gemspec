@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_model_translations}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Forkert"]
@@ -14,43 +14,43 @@ Gem::Specification.new do |s|
   s.email = %q{fxposter@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+    "README.rdoc"
   ]
   s.files = [
     ".document",
-     ".gitignore",
-     "Gemfile",
-     "Gemfile.lock",
-     "LICENSE",
-     "README.rdoc",
-     "Rakefile",
-     "VERSION",
-     "lib/simple_model_translations.rb",
-     "lib/simple_model_translations/attributes.rb",
-     "lib/simple_model_translations/base.rb",
-     "lib/simple_model_translations/class_methods.rb",
-     "lib/simple_model_translations/instance_methods.rb",
-     "lib/simple_model_translations/validations.rb",
-     "simple_model_translations.gemspec",
-     "spec/attributes_spec.rb",
-     "spec/data/models.rb",
-     "spec/data/schema.rb",
-     "spec/simple_model_translations_spec.rb",
-     "spec/spec_helper.rb",
-     "spec/validations_spec.rb"
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE",
+    "README.rdoc",
+    "Rakefile",
+    "VERSION",
+    "lib/simple_model_translations.rb",
+    "lib/simple_model_translations/attributes.rb",
+    "lib/simple_model_translations/base.rb",
+    "lib/simple_model_translations/class_methods.rb",
+    "lib/simple_model_translations/instance_methods.rb",
+    "lib/simple_model_translations/validations.rb",
+    "simple_model_translations.gemspec",
+    "spec/attributes_spec.rb",
+    "spec/class_methods_spec.rb",
+    "spec/data/models.rb",
+    "spec/data/schema.rb",
+    "spec/simple_model_translations_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/validations_spec.rb"
   ]
   s.homepage = %q{http://github.com/fxposter/simple_model_translations}
-  s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Simple ActiveRecord translations for Rails 3}
   s.test_files = [
     "spec/attributes_spec.rb",
-     "spec/data/models.rb",
-     "spec/data/schema.rb",
-     "spec/simple_model_translations_spec.rb",
-     "spec/spec_helper.rb",
-     "spec/validations_spec.rb"
+    "spec/class_methods_spec.rb",
+    "spec/data/models.rb",
+    "spec/data/schema.rb",
+    "spec/simple_model_translations_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/validations_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -59,28 +59,22 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
-      s.add_development_dependency(%q<database_cleaner>, [">= 0"])
-      s.add_development_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<factory_girl>, [">= 0"])
+      s.add_development_dependency(%q<database_cleaner>, [">= 0.5.2"])
+      s.add_development_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
+      s.add_development_dependency(%q<shoulda>, [">= 2.11.3"])
       s.add_development_dependency(%q<rspec>, [">= 2.0.0"])
     else
       s.add_dependency(%q<activerecord>, [">= 3.0.0"])
-      s.add_dependency(%q<database_cleaner>, [">= 0"])
-      s.add_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<factory_girl>, [">= 0"])
+      s.add_dependency(%q<database_cleaner>, [">= 0.5.2"])
+      s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
+      s.add_dependency(%q<shoulda>, [">= 2.11.3"])
       s.add_dependency(%q<rspec>, [">= 2.0.0"])
     end
   else
     s.add_dependency(%q<activerecord>, [">= 3.0.0"])
-    s.add_dependency(%q<database_cleaner>, [">= 0"])
-    s.add_dependency(%q<ruby-debug>, [">= 0"])
-    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<factory_girl>, [">= 0"])
+    s.add_dependency(%q<database_cleaner>, [">= 0.5.2"])
+    s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
+    s.add_dependency(%q<shoulda>, [">= 2.11.3"])
     s.add_dependency(%q<rspec>, [">= 2.0.0"])
   end
 end
