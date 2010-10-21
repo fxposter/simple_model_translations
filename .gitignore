@@ -22,3 +22,4 @@ pkg
 .rspec
 .rvmrc
 .bundle
+*.gem
