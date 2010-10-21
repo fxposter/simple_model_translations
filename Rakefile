@@ -18,11 +18,13 @@ Rake::RDocTask.new do |rdoc|
 end
 
 task :build do
-  system 'gem build .gemspec'
+  system 'gem build simple_model_translations.gemspec'
+  system 'mkdir pkg' unless File.exists?('pkg')
+  system "mv simple_model_translations-#{SimpleModelTranslations::VERSION}.gem pkg"
 end
  
 task :release => :build do
-  system "gem push simple_model_translations-#{SimpleModelTranslations::VERSION}.gem"
+  system "gem push pkg/simple_model_translations-#{SimpleModelTranslations::VERSION}.gem"
 end
 
 task :default => :spec
