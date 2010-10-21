@@ -15,7 +15,7 @@ module SimpleModelTranslations
     # Configure translated attributes.
     # Eg:
     # class Post < ActiveRecord::Base
-    #   translates :title, :description
+    #   translates :title, :description, :attributes => true
     # end
     def translates(*attributes)
       configure_translations(attributes.extract_options!)
@@ -52,7 +52,7 @@ module SimpleModelTranslations
         
         has_many :translations, :class_name => translation_class.name, :dependent => :destroy, :autosave => true
         
-        if options[:accepts_nested_attributes]
+        if options[:attributes]
           accepts_nested_attributes_for :translations, :allow_destroy => true
         end
       end
