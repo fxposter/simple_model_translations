@@ -9,7 +9,7 @@ module SimpleModelTranslations
     end
     
     def build_translation_for_locale(locale)
-      translations.build(:locale => locale)
+      translations.build(:locale => locale, foreign_object_key => self)
     end
     
     def current_locale_for_translation
@@ -19,5 +19,10 @@ module SimpleModelTranslations
     def default_locale_for_translation
       I18n.default_locale
     end
+    
+    private
+      def foreign_object_key
+        self.class.name.underscore.to_sym
+      end
   end
 end
