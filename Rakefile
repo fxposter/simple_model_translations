@@ -1,13 +1,12 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'simple_model_translations/version'
 
 require 'rubygems'
 require 'rake'
-require 'simple_model_translations/version'
 require 'rspec/core/rake_task'
 require 'rake/rdoctask'
 
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.rspec_opts = %w(-fs --color)
 end
 
 Rake::RDocTask.new do |rdoc|

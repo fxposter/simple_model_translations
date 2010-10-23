@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary          = 'Simple ActiveRecord translations for Rails 3'
   s.description      = 'Simple ActiveRecord translations for Rails 3'
   s.require_path     = 'lib'
-  s.files            = Dir.glob('{spec,lib}/**/*') + %w(Gemfile Gemfile.lock LICENSE Rakefile README.rdoc simple_model_translations.gemspec)
+  s.files            = Dir.glob('{spec,lib}/**/*') + %w(Gemfile Gemfile.lock LICENSE Rakefile README.rdoc simple_model_translations.gemspec .rspec)
   s.test_files       = Dir.glob('spec/**/*')
   s.extra_rdoc_files = %w(LICENSE README.rdoc)
 
