@@ -28,4 +28,9 @@ end
 
 describe ArticleTranslation do
   it { should belong_to :article }
+  
+  it 'always has an article' do
+    article = Article.new(:name => 'hello')
+    article.translations.first.article.should == article
+  end
 end

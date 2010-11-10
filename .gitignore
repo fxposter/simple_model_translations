@@ -19,6 +19,6 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
-.rspec
 .rvmrc
 .bundle
+*.gem

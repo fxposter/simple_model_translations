@@ -18,3 +18,7 @@ end
 class Tag < ActiveRecord::Base
   translates :name
 end
+
+class Category < ActiveRecord::Base
+  translates :name, :attributes => true
+end

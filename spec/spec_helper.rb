@@ -1,12 +1,5 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'bundler'
-Bundler.require(:default, :test)
-
-require 'rspec'
-require 'shoulda'
-require 'active_record'
-require 'simple_model_translations'
+Bundler.require(:default, :development)
 
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 DatabaseCleaner.strategy = :transaction

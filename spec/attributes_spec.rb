@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Article do
@@ -95,3 +97,18 @@ end
 describe ArticleTranslation do
   it { should belong_to :article }
 end
+
+describe Category do
+  it { should respond_to(:translations_attributes=) }
+  it 'should accept array of translation attributes' do
+    category = Category.create!(:translations_attributes => [
+                  { :locale => :en, :name => 'Science' },
+                  { :locale => :ru, :name => 'Наука' }
+                ])
+    category.should have_translation(:ru)
+    category.should have_translation(:en)
+    category.should have_translated_attribute(:en, :name, 'Science')
+    category.should have_translated_attribute(:ru, :name, 'Наука')
+  end
+end
+

@@ -31,5 +31,19 @@ ActiveRecord::Schema.define do
     t.references :tag
     t.string :name
   end
+  
+  create_table :categories, :force => true
+  create_table :category_translations, :force => true do |t|
+    t.string :locale
+    t.references :category
+    t.string :name
+  end
+  
+  create_table :some_models, :force => true
+  create_table :some_model_translations, :force => true do |t|
+    t.string :locale
+    t.references :some_models
+    t.string :name
+  end
 end
 

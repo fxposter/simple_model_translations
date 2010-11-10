@@ -1,6 +1,6 @@
 module SimpleModelTranslations
   module Validations
-    class TranslationsValidator < ActiveModel::Validator
+    class TranslationsValidator < ::ActiveModel::Validator
       def validate(record)
         locales = options[:locales]
         locales = [locales] unless locales.respond_to?(:each)

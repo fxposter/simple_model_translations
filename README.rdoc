@@ -51,6 +51,22 @@ Now you are able to translate values for the attributes :title and :description 
   
 Additional features can be discovered by searching the code and specs. Documentation is not available yet. I hope, it'll be done when releasing zn.ua. :)
 
+== Nested attributes
+
+Usually, when creating bootstrap data (e.g. seeds.rb) you want to pass all translations in one statement.
+You can do it using Rails' nested attributes, and we propose a very convenient option for that:
+
+  class Category < ActiveRecord::Base
+    translates :name, :attributes => true
+  end
+
+Usage:
+
+  Category.create!(:translations_attributes => [
+      { :locale => :en, :name => 'Science' },
+      { :locale => :ru, :name => 'Наука' }
+    ])
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
