@@ -45,5 +45,12 @@ ActiveRecord::Schema.define do
     t.references :some_models
     t.string :name
   end
+  
+  create_table :books, :force => true
+  create_table :book_translations, :force => true do |t|
+    t.string :locale
+    t.references :book
+    t.string :name
+  end
 end
 

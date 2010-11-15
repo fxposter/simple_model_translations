@@ -17,8 +17,9 @@ module SimpleModelTranslations
     # class Post < ActiveRecord::Base
     #   translates :title, :description, :attributes => true
     # end
-    def translates(*attributes)
+    def translates(*attributes, &block)
       configure_translations(attributes.extract_options!)
+      translation_class.class_eval(&block) if block_given?
 
       attributes.each do |attribute|
         # attribute setter

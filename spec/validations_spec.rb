@@ -12,3 +12,11 @@ describe Post do
     post.should_not be_valid
   end
 end
+
+describe Book do
+  it 'should validate presence of name' do
+    book = Book.new(:locale => :ru, :name => '')
+    book.should_not be_valid
+    book.errors['translations.name'].should_not be_empty
+  end
+end

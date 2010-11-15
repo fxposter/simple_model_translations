@@ -22,3 +22,9 @@ end
 class Category < ActiveRecord::Base
   translates :name, :attributes => true
 end
+
+class Book < ActiveRecord::Base
+  translates :name do
+    validates_presence_of :name
+  end
+end
