@@ -1,10 +1,17 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Article do
-  it 'should be able to return only records which have translations' do
+  it 'should be able to return only records which have translations when called without parameters' do
     first_article = Article.create!(:slug => 'hello')
     second_article = Article.create!(:slug => 'world', :name => 'WORLD')
     Article.with_translations.to_a.should == [second_article]
+  end
+  
+  it 'should be able to return only records which have specified translations' do
+    first_article = Article.create!(:slug => 'hello', :name => 'WORLD', :locale => :ru)
+    second_article = Article.create!(:slug => 'world', :name => 'WORLD', :locale => :en)
+    Article.with_translations(:en).to_a.should == [second_article]
+    Article.with_translation(:en).to_a.should == [second_article]
   end
   
   it 'should be able to return translation class' do

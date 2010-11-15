@@ -1,8 +1,13 @@
 module SimpleModelTranslations
   module ClassMethods
-    def with_translations
-      includes(:translations).where("#{translated_column_name(:id)} IS NOT NULL")
+    def with_translations(*args)
+      if args.empty?
+        includes(:translations).where("#{translated_column_name(:id)} IS NOT NULL")
+      else
+        includes(:translations).where("#{translated_column_name(:locale)} IN (?)", args)
+      end
     end
+    alias with_translation with_translations
     
     def translation_class
       begin

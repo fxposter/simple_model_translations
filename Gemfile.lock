@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_model_translations (0.1.9)
+    simple_model_translations (0.2.1)
       activerecord (~> 3.0.0)
 
 GEM

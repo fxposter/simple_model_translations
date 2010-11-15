@@ -67,6 +67,14 @@ Usage:
       { :locale => :ru, :name => 'Наука' }
     ])
 
+== Fetching records with selected translations
+
+If you want (and you probably do want) to fetch only records with specified translation, you can do it now:
+
+  Article.with_translation(:ru)
+
+This code returns an ActiveRecord::Relation object, so you can chain your query furthermore.
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
