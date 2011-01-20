@@ -20,6 +20,10 @@ module SimpleModelTranslations
       I18n.default_locale
     end
     
+    def current_translation
+      find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
+    end
+    
     private
       def foreign_object_key
         self.class.name.underscore.to_sym

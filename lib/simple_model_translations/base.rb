@@ -30,10 +30,7 @@ module SimpleModelTranslations
 
         # attribute getter
         define_method attribute do
-          translation = find_translation_by_locale(current_locale_for_translation) || 
-                        find_translation_by_locale(default_locale_for_translation)
-
-          translation ? translation.send(attribute) : nil
+          current_translation ? current_translation.send(attribute) : nil
         end
       end
     end

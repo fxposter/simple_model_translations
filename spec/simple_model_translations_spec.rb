@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Article do
+  after { I18n.locale = I18n.default_locale }
+  
   it { should have_many :translations }
 
   it "should have empty translations for a new record" do
@@ -9,9 +11,7 @@ describe Article do
   
   it 'should destroy dependent locales' do
     article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
-    expect do
-      article.destroy
-    end.to change(ArticleTranslation, :count).by(-1)
+    expect { article.destroy }.to change(ArticleTranslation, :count).by(-1)
   end
   
   it 'should use I18n fallbacks' do
@@ -23,6 +23,24 @@ describe Article do
     article.name.should == 'Hello'
     I18n.locale = :de
     article.name.should == 'Hello'
+  end
+  
+  describe '#current_translation' do
+    it 'should return translation for current locale if it exists' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
+      article.current_translation.should == article.translations.find_by_locale(I18n.locale)
+    end
+    
+    it 'should return translation for default locale if translation for current locale does not exist' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
+      I18n.locale = :de
+      article.current_translation.should == article.translations.find_by_locale(I18n.default_locale)
+    end
+    
+    it 'should return nil if translations for current and default locales do not exist' do
+      article = Article.create!(:slug => '__hello__')
+      article.current_translation.should be_nil
+    end
   end
 end
 
