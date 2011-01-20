@@ -16,12 +16,14 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+desc 'Build gem' 
 task :build do
   system 'gem build simple_model_translations.gemspec'
   system 'mkdir pkg' unless File.exists?('pkg')
   system "mv simple_model_translations-#{SimpleModelTranslations::VERSION}.gem pkg"
 end
- 
+
+desc 'Build and push gem to rubygems.org' 
 task :release => :build do
   system "gem push pkg/simple_model_translations-#{SimpleModelTranslations::VERSION}.gem"
 end
