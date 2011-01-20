@@ -21,18 +21,8 @@ module SimpleModelTranslations
       configure_translations(attributes.extract_options!)
       translation_class.class_eval(&block) if block_given?
 
-      attributes.each do |attribute|
-        # attribute setter
-        define_method "#{attribute}=" do |value|
-          translation = find_or_build_translation_by_locale(I18n.locale)
-          translation.send("#{attribute}=", value)
-        end
-
-        # attribute getter
-        define_method attribute do
-          current_translation ? current_translation.send(attribute) : nil
-        end
-      end
+      delegate *(attributes + [:to => :current_translation, :allow_nil => true])
+      delegate *(attributes.map { |attr| "#{attr}=" } + [:to => :find_or_build_current_translation])
     end
 
     private
