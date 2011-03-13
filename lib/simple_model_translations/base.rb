@@ -21,8 +21,8 @@ module SimpleModelTranslations
       configure_translations(attributes.extract_options!)
       translation_class.class_eval(&block) if block_given?
 
-      delegate *(attributes + [:to => :current_translation, :allow_nil => true])
-      delegate *(attributes.map { |attr| "#{attr}=" } + [:to => :find_or_build_current_translation])
+      delegate *(attributes + [:to => 'translation_helper.current_translation'.to_sym, :allow_nil => true])
+      delegate *(attributes.map { |attr| "#{attr}=" } + [:to => 'translation_helper.find_or_build_current_translation'.to_sym])
     end
 
     private

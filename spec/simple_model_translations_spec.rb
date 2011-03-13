@@ -28,18 +28,18 @@ describe Article do
   describe '#current_translation' do
     it 'should return translation for current locale if it exists' do
       article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
-      article.current_translation.should == article.translations.find_by_locale(I18n.locale)
+      article.translation_helper.current_translation.should == article.translations.find_by_locale(I18n.locale)
     end
     
     it 'should return translation for default locale if translation for current locale does not exist' do
       article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
       I18n.locale = :de
-      article.current_translation.should == article.translations.find_by_locale(I18n.default_locale)
+      article.translation_helper.current_translation.should == article.translations.find_by_locale(I18n.default_locale)
     end
     
     it 'should return nil if translations for current and default locales do not exist' do
       article = Article.create!(:slug => '__hello__')
-      article.current_translation.should be_nil
+      article.translation_helper.current_translation.should be_nil
     end
   end
 end

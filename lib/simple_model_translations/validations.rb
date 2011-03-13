@@ -2,10 +2,8 @@ module SimpleModelTranslations
   module Validations
     class TranslationsValidator < ::ActiveModel::Validator
       def validate(record)
-        locales = options[:locales]
-        locales = [locales] unless locales.respond_to?(:each)
-        locales.each do |locale|
-          unless record.find_translation_by_locale(locale)
+        Array.wrap(options[:locales]).each do |locale|
+          unless record.translation_helper.find_translation_by_locale(locale)
             record.errors.add(:translations, "miss #{locale} translation")
           end
         end

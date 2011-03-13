@@ -1,36 +1,9 @@
+require 'simple_model_translations/translation_helper'
+
 module SimpleModelTranslations
   module InstanceMethods
-    def find_translation_by_locale(locale)
-      translations.detect { |t| t.locale.to_sym == locale }
+    def translation_helper
+      @translation_helper ||= SimpleModelTranslations::TranslationHelper.new(self)
     end
-    
-    def find_or_build_translation_by_locale(locale)
-      find_translation_by_locale(locale) || build_translation_for_locale(locale)
-    end
-    
-    def build_translation_for_locale(locale)
-      translations.build(:locale => locale, foreign_object_key => self)
-    end
-    
-    def current_locale_for_translation
-      I18n.locale
-    end
-    
-    def default_locale_for_translation
-      I18n.default_locale
-    end
-    
-    def current_translation
-      find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
-    end
-    
-    def find_or_build_current_translation
-      find_or_build_translation_by_locale(current_locale_for_translation)
-    end
-    
-    private
-      def foreign_object_key
-        self.class.name.underscore.to_sym
-      end
   end
 end

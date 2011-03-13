@@ -23,12 +23,12 @@ end
 
 RSpec::Matchers.define :have_translation do |locale|
   match do |record|
-    !record.find_translation_by_locale(locale).nil?
+    !record.translation_helper.find_translation_by_locale(locale).nil?
   end
 end
 
 RSpec::Matchers.define :have_translated_attribute do |locale, attribute, value|
   match do |record|
-    record.find_translation_by_locale(locale).send(attribute) == value
+    record.translation_helper.find_translation_by_locale(locale).send(attribute) == value
   end
 end
