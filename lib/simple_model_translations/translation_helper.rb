@@ -6,7 +6,11 @@ module SimpleModelTranslations
     end
 
     def find_translation_by_locale(locale)
-      translations.detect { |t| t.locale.to_sym == locale }
+      if translations.loaded? || @record.new_record?
+        translations.detect { |t| t.locale.to_sym == locale }
+      else
+        translations.find_by_locale(locale)
+      end
     end
 
     def find_or_build_translation_by_locale(locale)
