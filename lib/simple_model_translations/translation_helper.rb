@@ -30,7 +30,7 @@ module SimpleModelTranslations
     end
 
     def current_translation
-      find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
+      cached_translations[current_locale_for_translation] ||= find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
     end
 
     def find_or_build_current_translation
@@ -40,6 +40,10 @@ module SimpleModelTranslations
     private
       def foreign_object_key
         @record.class.name.underscore.to_sym
+      end
+      
+      def cached_translations
+        @cached_translations ||= {}
       end
       
       def translations
