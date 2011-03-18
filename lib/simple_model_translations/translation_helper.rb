@@ -6,11 +6,7 @@ module SimpleModelTranslations
     end
 
     def find_translation_by_locale(locale)
-      if translations.loaded? || @record.new_record?
-        translations.detect { |t| t.locale.to_sym == locale }
-      else
-        translations.find_by_locale(locale)
-      end
+      translations.detect { |t| t.locale.to_sym == locale }
     end
 
     def find_or_build_translation_by_locale(locale)
@@ -30,11 +26,26 @@ module SimpleModelTranslations
     end
 
     def current_translation
-      cached_translations[current_locale_for_translation] ||= find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
+      @current_translation || find_translation_by_locale(current_locale_for_translation) || find_translation_by_locale(default_locale_for_translation)
     end
 
     def find_or_build_current_translation
       find_or_build_translation_by_locale(current_locale_for_translation)
+    end
+    
+    def force_translation_with_locale(locale)
+      translation = 
+        if translations.loaded?
+          find_translation_by_locale(locale)
+        else
+          translations.find_by_locale(locale)
+        end
+      if translation
+        @record.readonly!
+        @current_translation = translation
+      else
+        raise "Cannot use translation with locale '#{locale}' for object '#{@record}'"
+      end
     end
     
     private

@@ -61,6 +61,13 @@ describe Article do
       @article.should have_translated_attribute(:ru, :name, 'Hello')
       @article.should have_translated_attribute(:en, :name, 'Hello in English')
     end
+    
+    it 'should not create additional translations when updating record, loaded from database' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World', :locale => :ru)
+      article.reload
+      article.update_attributes!(:name => 'Hello', :content => 'World', :locale => :en)
+      article.translations.length.should == 2
+    end
   end
   
   describe '#attributes=' do

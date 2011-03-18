@@ -42,6 +42,29 @@ describe Article do
       article.translation_helper.current_translation.should be_nil
     end
   end
+  
+  describe '#force_translation_with_locale(locale)' do
+    it 'should use data from selected translation' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World', :locale => :en)
+      article.update_attributes!(:name => 'Привет', :locale => :ru)
+      article.translation_helper.force_translation_with_locale(:en)
+      article.content.should == 'World'
+      article.name.should == 'Hello'
+    end
+    
+    it 'should raise exception when there is no translation' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
+      expect { article.translation_helper.force_translation_with_locale(:en) }.to raise_error
+    end
+    
+    it 'should make record read-only' do
+      article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World', :locale => :en)
+      article.update_attributes!(:name => 'Привет', :locale => :ru)
+      article.translation_helper.force_translation_with_locale(:en)
+      article.should be_readonly
+    end
+    
+  end
 end
 
 describe ArticleTranslation do
