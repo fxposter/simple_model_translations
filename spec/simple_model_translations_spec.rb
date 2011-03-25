@@ -52,9 +52,9 @@ describe Article do
       article.name.should == 'Hello'
     end
     
-    it 'should raise exception when there is no translation' do
+    it 'should raise ActiveRecord::RecordNotFound when there is no translation' do
       article = Article.create!(:slug => '__hello__', :name => 'Hello', :content => 'World')
-      expect { article.translation_helper.force_translation_with_locale(:en) }.to raise_error
+      expect { article.translation_helper.force_translation_with_locale(:en) }.to raise_error(ActiveRecord::RecordNotFound)
     end
     
     it 'should make record read-only' do
@@ -63,7 +63,6 @@ describe Article do
       article.translation_helper.force_translation_with_locale(:en)
       article.should be_readonly
     end
-    
   end
 end
 

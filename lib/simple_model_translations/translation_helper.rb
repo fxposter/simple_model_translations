@@ -44,7 +44,7 @@ module SimpleModelTranslations
         @record.readonly!
         @current_translation = translation
       else
-        raise "Cannot use translation with locale '#{locale}' for object '#{@record}'"
+        raise ActiveRecord::RecordNotFound.new("Cannot use translation with locale '#{locale}' for object '#{@record}'")
       end
     end
     
