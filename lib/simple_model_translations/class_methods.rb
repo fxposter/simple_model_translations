@@ -8,18 +8,19 @@ module SimpleModelTranslations
     alias with_translation with_translations
     
     def translation_class
-      begin
-        klass = const_get(translation_class_name.to_sym)
-      rescue NameError => e
-        klass = const_set(translation_class_name.to_sym, Class.new(ActiveRecord::Base))
-        klass.translation_for(self.name.underscore.to_sym)
-        klass.set_table_name(translation_class_name.underscore.pluralize)
-      end
-      klass
+      @translation_class ||=
+        begin
+          Object.const_get(translation_class_name)
+        rescue NameError => e
+          klass = Object.const_set(translation_class_name, Class.new(ActiveRecord::Base))
+          klass.translation_for(name.underscore.to_sym)
+          klass.set_table_name(translation_class_name.to_s.underscore.pluralize)
+          klass
+        end
     end
     
     def translation_class_name
-      class_name = translation_options[:class_name] || "#{self.name}Translation"
+      @translation_class_name ||= (translation_options[:class_name] || "#{self.name}Translation").to_sym
     end
     
     def translated_column_name(name)
